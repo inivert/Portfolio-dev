@@ -11,7 +11,7 @@ export const DATA = {
   description:
     "From soldier to cybersecurity professional with a passion for learning and a focus on programming and automation.",
   summary:
-    "Served 4 years in the U.S. Army as an infantryman, followed by a year as a IT Specialist. Transitioned to the private sector in cybersecurity and now advancing my career by self teaching myself coding and automations.",
+    "Served 4 years in the U.S. Army as an infantryman, followed by a year as a IT Specialist. Transitioned to the private sector in cybersecurity and now advancing my career by teaching myself how to code and do automations.",
   avatarUrl: "/me.png",
   skills: [
     "React",

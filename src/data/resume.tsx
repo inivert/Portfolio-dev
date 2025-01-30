@@ -72,56 +72,6 @@ export const DATA = {
     },
   },
 
-  work: [
-    {
-      company: "US Army Reserves",
-      href: "https://www.goarmy.com/careers-and-jobs/signal-intelligence/locations-stats-frequencies/25b-information-technology-specialist",
-      badges: [],
-      location: "Rhode Island",
-      title: "IT Specialist",
-      logoUrl: "/army.png",
-      start: "May 2024",
-      end: "Present",
-      description:
-        "Deployed and maintained a secure and efficient IT infrastructure for the Rhode Island Army Reserves. Provided technical support and solutions to enhance the organization's operational capabilities.",
-    },
-    {
-      company: "Chili's Grill & Bar",
-      badges: [],
-      href: "https://www.google.com/maps/place/Warwick,+RI/",
-      location: "Warwick, RI",
-      title: "Line Cook",
-      logoUrl: "/chilis-logo.png",
-      start: "June 2024",
-      end: "December 2024",
-      description:
-        "Prepared and cooked food for customers in a fast-paced restaurant environment. Maintained a clean and safe kitchen area, adhering to health and safety standards.",
-    },
-    {
-      company: "Home Depot",
-      href: "https://www.homedepot.com/",
-      badges: [],
-      location: "Johnston, RI",
-      title: "Fullfillment Associate",
-      logoUrl: "/HomeDepot-logo.png",
-      start: "March 2024",
-      end: "June 2024",
-      description:
-        "Packaged and prepared customer orders for delivery or pickup. Assisted with stocking shelves and maintaining a clean and organized store environment.",
-    },
-    {
-      company: "US Army",
-      href: "https://www.goarmy.com",
-      badges: [],
-      location: "Rhode Island",
-      title: "Infantryman",
-      logoUrl: "/army.png",
-      start: "July 2020",
-      end: "January 2024",
-      description:
-        "Served as a soldier in the United States Army, participating in various training exercises and deployments. Gained valuable experience in teamwork, leadership, and tactical operations.",
-    },
-  ],
   education: [
     {
       school: "New England Institute of Technology",
@@ -149,7 +99,30 @@ export const DATA = {
     },
   ],
   projects: [
-    // TODO: Add projects section - in progress
+    {
+      title: "Restaurant Page",
+      href: "https://templatedemo.vercel.app/",
+      description: "A modern and responsive restaurant website template showcasing menu items, services, and booking functionality.",
+      dates: "2024",
+      technologies: ["Vite", "Vue.js", "gsap", "TypeScript"],
+      video: "/videos/Restaurant-Template.mp4"
+    },
+    {
+      title: "Restaurant Page V2",
+      href: "https://restaurantdemo-five.vercel.app/menu",
+      description: "An enhanced version of the restaurant template with improved UI/UX and additional features.",
+      dates: "2024",
+      technologies: ["Vite", "React", "TypeScript"],
+      video: "/videos/Restaurant-temp2.mp4"
+    },
+    {
+      title: "Landscaping Landing Page",
+      href: "https://m-v-landscaping.vercel.app/",
+      description: "A sleek and modern portfolio website for showcasing landscape photography and services.",
+      dates: "2024",
+      technologies: ["Next.js", "TypeScript", "Tailwind", "Material UI"],
+      video: "/videos/landscape-temp.mp4"
+    }
   ] as Array<{
     title: string;
     href?: string;

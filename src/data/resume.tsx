@@ -9,9 +9,9 @@ export const DATA = {
   location: "Providence, RI",
   locationLink: "https://www.google.com/maps/place/Providence,+RI/",
   description:
-    "From soldier to cybersecurity professional with a passion for learning and a focus on programming and automation.",
+    "From soldier to cybersecurity professional and now a full stack developer.",
   summary:
-    "Served 4 years in the U.S. Army as an infantryman, followed by a year as a IT Specialist. Transitioned to the private sector in cybersecurity and now advancing my career by teaching myself how to code and do automations.",
+    "I build custom websites and web apps for businesses and individuals. After serving in the Army and working in cybersecurity, I taught myself to code and now work as a freelance developer. I focus on creating fast, secure sites using React and Next.js that actually help my clients grow their business.",
   avatarUrl: "/me.png",
   skills: [
     "React",

@@ -30,7 +30,7 @@ A modern, responsive portfolio website built with Next.js 14, React, TypeScript,
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/inivert/portfolio
+   git clone https://github.com/inivert/portfolio-dev
    ```
 
 2. Install dependencies:

@@ -7,24 +7,24 @@ import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
-
-const BLUR_FADE_DELAY = 0.04;
+import { PricingDialog } from "@/components/pricing-dialog";
+import { BLUR_FADE_DELAY } from "@/constants/animation";
 
 export default function Page() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
-      <section id="hero">
-        <div className="mx-auto w-full max-w-2xl space-y-8">
-          <div className="gap-2 flex justify-between">
-            <div className="flex-col flex flex-1 space-y-1.5">
+    <main className="relative flex flex-col min-h-[100dvh] space-y-10">
+      <section id="hero" className="w-full overflow-visible">
+        <div className="mx-auto w-full max-w-2xl space-y-8 overflow-visible">
+          <div className="gap-2 flex justify-between overflow-visible">
+            <div className="flex-col flex flex-1 space-y-1.5 overflow-visible">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none overflow-visible"
                 yOffset={8}
                 text={`Hi, I'm ${DATA.name.split(" ")[0]} 🧑🏻‍💻`}
               />
               <BlurFadeText
-                className="max-w-[600px] md:text-xl"
+                className="max-w-[600px] md:text-xl overflow-visible"
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
@@ -38,7 +38,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section id="about">
+      <section id="about" className="w-full overflow-visible">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold">About</h2>
         </BlurFade>
@@ -48,8 +48,8 @@ export default function Page() {
           </Markdown>
         </BlurFade>
       </section>
-      <section id="education">
-        <div className="flex min-h-0 flex-col gap-y-3">
+      <section id="education" className="w-full overflow-visible">
+        <div className="flex min-h-0 flex-col gap-y-3 overflow-visible">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
             <h2 className="text-xl font-bold">Education</h2>
           </BlurFade>
@@ -148,10 +148,10 @@ export default function Page() {
           )}
         </div>
       </section>
-      <section id="request-services">
-        <div className="space-y-12 w-full py-12">
+      <section id="request-services" className="w-full overflow-visible">
+        <div className="space-y-12 w-full py-12 overflow-visible">
           <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center overflow-visible">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm animate-bounce">
                   Services
@@ -192,22 +192,25 @@ export default function Page() {
                       </ul>
                     </div>
                   </div>
-                  <Link
-                    href={`mailto:${DATA.contact.email}?subject=Website Development Services Request`}
-                    className="inline-flex h-10 items-center justify-center rounded-md bg-foreground px-8 text-sm font-medium text-background transition-all duration-300 hover:scale-110 hover:bg-foreground/90"
-                  >
-                    Request a Quote
-                  </Link>
+                  <div className="flex gap-4 items-center justify-center">
+                    <Link
+                      href={`mailto:${DATA.contact.email}?subject=Website Development Services Request`}
+                      className="inline-flex h-10 items-center justify-center rounded-md bg-foreground px-8 text-sm font-medium text-background transition-all duration-300 hover:scale-110 hover:bg-foreground/90"
+                    >
+                      Request a Quote
+                    </Link>
+                    <PricingDialog />
+                  </div>
                 </div>
               </div>
             </div>
           </BlurFade>
         </div>
       </section>
-      <section id="contact">
-        <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
+      <section id="contact" className="w-full overflow-visible">
+        <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12 overflow-visible">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
-            <div className="space-y-3">
+            <div className="space-y-3 overflow-visible">
               <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
                 Contact
               </div>

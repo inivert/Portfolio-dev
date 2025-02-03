@@ -39,21 +39,18 @@ export const DATA = {
         name: "GitHub",
         url: "https://dub.sh/inivert-github",
         icon: Icons.github,
-
         navbar: true,
       },
       LinkedIn: {
         name: "LinkedIn",
         url: "https://dub.sh/carlos-linkedin",
         icon: Icons.linkedin,
-
         navbar: true,
       },
       X: {
         name: "X",
         url: "https://dub.sh/lumus",
         icon: Icons.x,
-
         navbar: true,
       },
       Youtube: {
@@ -62,11 +59,16 @@ export const DATA = {
         icon: Icons.youtube,
         navbar: false,
       },
+      WhatsApp: {
+        name: "WhatsApp",
+        url: "https://wa.me/14013476461",
+        icon: Icons.whatsapp,
+        navbar: true,
+      },
       email: {
         name: "Send Email",
         url: "mailto:m.carlos90@outlook.com",
         icon: Icons.email,
-
         navbar: true,
       },
     },

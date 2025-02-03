@@ -12,30 +12,36 @@ export function PricingDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className={cn(
-          COMMON_STYLES.button.base,
-          COMMON_STYLES.button.primary,
-          GRADIENTS.primary,
-          TRANSITIONS.hover,
-          TRANSITIONS.scale,
-          'hover:shadow-lg'
-        )}>
+        <button
+          className={cn(
+            COMMON_STYLES.button.base,
+            COMMON_STYLES.button.primary,
+            GRADIENTS.primary,
+            TRANSITIONS.hover,
+            TRANSITIONS.scale,
+            "hover:shadow-lg"
+          )}
+        >
           View My Rates
         </button>
       </DialogTrigger>
-      <DialogContent className={cn(
-        COMMON_STYLES.container.dialog,
-        TRANSITIONS.hover,
-        "p-0" // Remove default padding for better control
-      )}>
+      <DialogContent
+        className={cn(
+          COMMON_STYLES.container.dialog,
+          TRANSITIONS.hover,
+          "p-0" // Remove default padding for better control
+        )}
+      >
         {/* Header Section */}
         <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b px-6 py-4">
           <DialogHeader>
-            <DialogTitle className={cn(
-              'text-center text-3xl pb-2',
-              GRADIENTS.primary,
-              COMMON_STYLES.text.gradient
-            )}>
+            <DialogTitle
+              className={cn(
+                "text-center text-3xl pb-2",
+                GRADIENTS.primary,
+                COMMON_STYLES.text.gradient
+              )}
+            >
               Choose Your Perfect Plan
             </DialogTitle>
             <p className="text-center text-muted-foreground">
@@ -131,7 +137,7 @@ export function PricingDialog() {
         {/* Footer */}
         <div className="sticky bottom-0 bg-background/80 backdrop-blur-sm border-t p-4 flex justify-center">
           <Link
-            href={`https://wa.me/${DATA.contact.tel.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
+            href={`https://wa.me/${DATA.contact.tel.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
               "Hi! I'm interested in discussing a web development project. I'd like to schedule a consultation to discuss the details and costs."
             )}`}
             target="_blank"

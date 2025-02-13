@@ -8,24 +8,20 @@ export const DATA = {
   location: "Providence, RI",
   locationLink: "https://www.google.com/maps/place/Providence,+RI/",
   description:
-    "From soldier to cybersecurity professional and now a fullstack developer freelancer.",
+    "From soldier to cybersecurity professional and now a website developer freelancer.",
   summary:
     "I build custom websites and web apps for businesses and individuals. After serving in the Army and working in cybersecurity, I taught myself to code and now work as a freelance developer. I focus on creating fast, secure sites using React and Next.js that actually help my clients grow their business.",
   avatarUrl: "/me.png",
   skills: [
-    "React",
-    "Next.js",
     "Nuxt.js",
     "Vue.js",
     "Typescript",
     "CSS",
     "HTML",
-    "JavaScript",
     "Python",
-    "Postgres",
-    "Docker",
     "Linux",
     "Windows Security",
+    "n8n automations",
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },

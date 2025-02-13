@@ -1,16 +1,30 @@
+"use client"
+
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
-import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
-import Link from "next/link";
-import Markdown from "react-markdown";
-import { PricingDialog } from "@/components/pricing-dialog";
 import { BLUR_FADE_DELAY } from "@/constants/animation";
+import { ContactDialog } from "@/components/contact-dialog";
+import { AboutDialog } from "@/components/about-dialog";
+import { useFloatingAnimation, useHoverAnimation, useStaggerAnimation, usePulseAnimation } from "@/animations/hooks";
+import { useEffect } from "react";
 
 export default function Page() {
+  // Add floating animation to avatar
+  useFloatingAnimation('.avatar-float');
+  
+  // Add hover effect to all cards
+  useHoverAnimation('.hover-scale');
+  
+  // Add stagger animation to skills
+  useStaggerAnimation('.skill-badge');
+  
+  // Add subtle pulse to CTA buttons
+  usePulseAnimation('.cta-button');
+
   return (
     <main className="relative flex flex-col min-h-[100dvh] space-y-10">
       <section id="hero" className="w-full overflow-visible">
@@ -28,9 +42,19 @@ export default function Page() {
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
+              <BlurFade delay={BLUR_FADE_DELAY * 2}>
+                <div className="flex gap-2 pt-4">
+                  <div className="cta-button">
+                    <AboutDialog />
+                  </div>
+                  <div className="cta-button">
+                    <ContactDialog />
+                  </div>
+                </div>
+              </BlurFade>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-28 border">
+              <Avatar className="size-28 border avatar-float">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -38,61 +62,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section id="about" className="w-full overflow-visible">
-        <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">About</h2>
-        </BlurFade>
-        <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-            {DATA.summary}
-          </Markdown>
-        </BlurFade>
-      </section>
-      <section id="education" className="w-full overflow-visible">
-        <div className="flex min-h-0 flex-col gap-y-3 overflow-visible">
-          <BlurFade delay={BLUR_FADE_DELAY * 7}>
-            <h2 className="text-xl font-bold">Education</h2>
-          </BlurFade>
-          {DATA.education.map((education, id) => (
-            <BlurFade
-              key={education.school}
-              delay={BLUR_FADE_DELAY * 8 + id * 0.05}
-            >
-              <ResumeCard
-                key={education.school}
-                href={education.href}
-                logoUrl={education.logoUrl}
-                altText={education.school}
-                title={education.school}
-                subtitle={education.degree}
-                period={`${education.start} - ${education.end}`}
-              />
-            </BlurFade>
-          ))}
-        </div>
-      </section>
-      <section id="certifications">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Certifications</h2>
-          </BlurFade>
-          {DATA.certifications.map((certification, id) => (
-            <BlurFade
-              key={certification.name}
-              delay={BLUR_FADE_DELAY * 10 + id * 0.05}
-            >
-              <ResumeCard
-                key={certification.name}
-                logoUrl={certification.logoUrl}
-                altText={certification.name}
-                title={certification.name}
-                period={`${certification.start} - ${certification.end}`}
-                href={certification.href}
-              />
-            </BlurFade>
-          ))}
-        </div>
-      </section>
+
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
@@ -101,12 +71,13 @@ export default function Page() {
           <div className="flex flex-wrap gap-1">
             {DATA.skills.map((skill, id) => (
               <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <Badge key={skill}>{skill}</Badge>
+                <Badge className="skill-badge" key={skill}>{skill}</Badge>
               </BlurFade>
             ))}
           </div>
         </div>
       </section>
+
       <section id="projects">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
@@ -131,105 +102,23 @@ export default function Page() {
                   key={project.title}
                   delay={BLUR_FADE_DELAY * 12 + id * 0.05}
                 >
-                  <ProjectCard
-                    href={project.href}
-                    key={project.title}
-                    title={project.title}
-                    description={project.description}
-                    dates={project.dates}
-                    tags={project.technologies}
-                    image={project.image}
-                    video={project.video}
-                    links={project.links}
-                  />
+                  <div className="hover-scale">
+                    <ProjectCard
+                      href={project.href}
+                      key={project.title}
+                      title={project.title}
+                      description={project.description}
+                      dates={project.dates}
+                      tags={project.technologies}
+                      image={project.image}
+                      video={project.video}
+                      links={project.links}
+                    />
+                  </div>
                 </BlurFade>
               ))}
             </div>
           )}
-        </div>
-      </section>
-      <section id="request-services" className="w-full overflow-visible">
-        <div className="space-y-12 w-full py-12 overflow-visible">
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center overflow-visible">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm animate-bounce">
-                  Services
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-gradient-to-r from-foreground via-foreground/50 to-foreground bg-[size:200%] animate-gradient bg-clip-text text-transparent">
-                  Need a Website?
-                </h2>
-                <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I specialize in building modern, fast, and beautiful websites for small businesses. Let&apos;s bring your vision to life.
-                </p>
-                <div className="mt-8 flex flex-col items-center space-y-4">
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-[800px]">
-                    <div className="rounded-lg border p-6 text-left transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-foreground group">
-                        <h3 className="text-lg font-semibold mb-2 group-hover:text-foreground transition-colors">What I Offer</h3>
-                        <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Custom website design and development</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Mobile-responsive layouts</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">SEO optimization</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Fast loading speeds</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Content management systems</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Custom integrations</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Automations</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Hosting and maintenance (subscription required)</li>
-                      </ul>
-
-                    </div>
-                    <div className="rounded-lg border p-6 text-left transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-foreground group">
-                        <h3 className="text-lg font-semibold mb-2 group-hover:text-foreground transition-colors">Perfect For</h3>
-                        <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Small to medium-sized businesses</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Personal portfolios</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Landing pages</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">E-commerce stores</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Blogs and content sites</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Startups</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Non-profits</li>
-                        <li className="transition-transform hover:translate-x-2 hover:text-foreground cursor-default">Influencers</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="flex gap-4 items-center justify-center">
-                    <Link
-                      href={`mailto:${DATA.contact.email}?subject=Website Development Services Request`}
-                      className="inline-flex h-10 items-center justify-center rounded-md bg-foreground px-8 text-sm font-medium text-background transition-all duration-300 hover:scale-110 hover:bg-foreground/90"
-                    >
-                      Request a Quote
-                    </Link>
-                    <PricingDialog />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </BlurFade>
-        </div>
-      </section>
-      <section id="contact" className="w-full overflow-visible">
-        <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12 overflow-visible">
-          <BlurFade delay={BLUR_FADE_DELAY * 16}>
-            <div className="space-y-3 overflow-visible">
-              <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                Contact
-              </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Get in Touch
-              </h2>
-              <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Just shoot me a dm{" "}
-                <Link
-                  href={DATA.contact.social.X.url}
-                  className="text-blue-500 hover:underline"
-                >
-                  with a direct question on twitter
-                </Link>{" "}
-                and I&apos;ll respond whenever I can. I will ignore all
-                soliciting.
-              </p>
-            </div>
-          </BlurFade>
         </div>
       </section>
     </main>

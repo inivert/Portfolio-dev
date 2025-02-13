@@ -43,6 +43,7 @@ export const ResumeCard = ({
       href={href || "#"}
       className="block cursor-pointer"
       onClick={handleClick}
+      {...(!description ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       <Card className="flex">
         <div className="flex-none">

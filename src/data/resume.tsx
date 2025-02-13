@@ -10,7 +10,7 @@ export const DATA = {
   description:
     "From soldier to cybersecurity professional and now a website developer freelancer.",
   summary:
-    "I build custom websites and web apps for businesses and individuals. After serving in the Army and working in cybersecurity, I taught myself to code and now work as a freelance developer. I focus on creating fast, secure sites using React and Next.js that actually help my clients grow their business.",
+    "I build custom websites and web apps for businesses and individuals. After serving in the Army and working in cybersecurity, I taught myself to code and now work as a freelance developer. Focus on creating fast, secure sites using Nuxt.js that actually help my clients grow their business.",
   avatarUrl: "/me.png",
   skills: [
     "Nuxt.js",

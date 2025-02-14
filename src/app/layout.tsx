@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     siteName: `${DATA.name} - Web Development Services`,
     images: [
       {
-        url: `${DATA.url}/me.png`,
+        url: `${DATA.url}/me.jpg`,
         width: 1200,
         height: 630,
         alt: `${DATA.name} - Web Developer`,
@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     title: `${DATA.name} - Web Developer`,
     description: `${DATA.description} Available for freelance web development projects.`,
     creator: "@inivert",
-    images: [`${DATA.url}/me.png`],
+    images: [`${DATA.url}/me.jpg`],
   },
   verification: {
     google: "your-google-verification-code", // Add your Google Search Console verification code

@@ -118,14 +118,17 @@ export default function Page() {
         <Spotlight className="mx-auto w-full max-w-2xl space-y-6 sm:space-y-8 overflow-visible" size={600}>
           <div className="flex flex-col-reverse sm:flex-row gap-4 sm:gap-6 sm:justify-between overflow-visible">
             <div className="flex-col flex flex-1 space-y-3 sm:space-y-4 mt-5 sm:mt-0 text-center sm:text-left overflow-visible">
-              <GradientText 
-                element="h1"
-                text={`Hi, I'm ${DATA.name.split(" ")[0]} 🧑🏻‍💻`}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none overflow-visible"
-                from="from-primary"
-                via="via-primary/80"
-                to="to-primary/60"
-              />
+              <div className="flex items-center sm:items-baseline gap-1.5 sm:gap-2 justify-center sm:justify-start">
+                <GradientText 
+                  element="h1"
+                  text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
+                  className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none overflow-visible"
+                  from="from-primary"
+                  via="via-primary/80"
+                  to="to-primary/60"
+                />
+                <span className="text-3xl sm:text-5xl xl:text-6xl inline-block transform translate-y-0.5 sm:translate-y-0">🧑🏻‍💻</span>
+              </div>
               <BlurFadeText
                 className="max-w-[600px] text-base sm:text-lg md:text-xl overflow-visible mx-auto sm:mx-0"
                 delay={BLUR_FADE_DELAY}
@@ -188,12 +191,16 @@ export default function Page() {
                 to="to-secondary"
               />
             </BlurFade>
-            <div className="flex flex-wrap gap-1.5 bg-background/30 rounded-xl p-3 sm:p-4 backdrop-blur-sm border border-primary/5">
+            <div className="relative flex flex-wrap gap-1.5 p-3 sm:p-4 border border-primary/10 rounded-xl bg-transparent backdrop-blur-[2px] hover:backdrop-blur-sm transition-all duration-500 group overflow-hidden">
+              {/* Subtle gradient background that only appears on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/2 via-secondary/2 to-primary/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
               {DATA.skills.map((skill, id) => (
                 <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
                   <Badge 
-                    className="skill-badge transition-all duration-300 hover:-translate-y-1" 
+                    className="skill-badge transition-all duration-300 hover:-translate-y-1 border border-primary/10 bg-background/5 hover:bg-primary/5 hover:border-primary/20 shadow-sm hover:shadow text-foreground/90 hover:text-foreground relative z-10" 
                     key={skill}
+                    variant="outline"
                   >
                     {skill}
                   </Badge>
@@ -206,29 +213,29 @@ export default function Page() {
 
       {/* Projects Section with improved spacing */}
       <section id="projects" className="w-full">
-        <div className="space-y-8 sm:space-y-12 w-full py-4 sm:py-6">
+        <div className="space-y-6 sm:space-y-12 w-full py-4 sm:py-6">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
-            <div className="flex flex-col items-center justify-center space-y-3 sm:space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+            <div className="flex flex-col items-center justify-center space-y-2 sm:space-y-4 text-center">
+              <div className="space-y-1 sm:space-y-2">
+                <div className="inline-block rounded-lg bg-foreground text-background px-2 py-0.5 sm:px-3 sm:py-1 text-xs sm:text-sm">
                   My Projects
                 </div>
                 <GradientText
                   element="h2"
                   text="Check out my latest work"
-                  className="text-2xl sm:text-3xl font-bold tracking-tighter sm:text-5xl"
+                  className="text-xl sm:text-3xl font-bold tracking-tighter sm:text-5xl"
                   from="from-primary"
                   via="via-accent"
                   to="to-secondary"
                 />
-                <p className="text-muted-foreground text-sm sm:text-base md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                <p className="text-muted-foreground text-xs sm:text-base md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed px-4 sm:px-0">
                   This section is currently under construction. Check back soon to see my latest projects!
                 </p>
               </div>
             </div>
           </BlurFade>
           {DATA.projects && DATA.projects.length > 0 && (
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 max-w-[800px] mx-auto">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-5 max-w-[800px] mx-auto px-2 sm:px-3">
               {DATA.projects.map((project, id) => (
                 <BlurFade
                   key={project.title}
@@ -251,6 +258,7 @@ export default function Page() {
                         ])
                       ) : undefined
                     }
+                    className="mobile-project-card"
                   />
                 </BlurFade>
               ))}

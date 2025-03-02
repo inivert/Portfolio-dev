@@ -295,3 +295,44 @@
     animation-delay: 0s !important;
     transition-duration: 0s !important;
   }
+
+  /* Mobile project card optimizations */
+  @media (max-width: 640px) {
+    .mobile-project-card .card-footer-badge:nth-child(n+3) {
+      display: none;
+    }
+    
+    .mobile-project-card {
+      max-height: 280px;
+      overflow: hidden;
+    }
+  }
+
+  /* Slightly larger mobile screens can show a few more tags */
+  @media (min-width: 400px) and (max-width: 640px) {
+    .mobile-project-card .card-footer-badge:nth-child(n+4) {
+      display: none;
+    }
+    
+    .mobile-project-card {
+      max-height: 320px;
+    }
+  }
+
+  html.js:not(.loaded) * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Mobile touch interactions */
+  @media (hover: none) {
+    /* For touch devices, show a subtle indication that the card is clickable */
+    .mobile-project-card:active {
+      transform: scale(0.98);
+    }
+    
+    /* Don't hide the button overlay completely on touch devices */
+    .mobile-project-card:active .absolute.inset-0.flex.items-center.justify-center {
+      opacity: 1 !important;
+    }
+  }

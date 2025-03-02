@@ -1,6 +1,6 @@
 "use client"
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -123,8 +123,10 @@ export function ContactDialog() {
               }}
             >
               <DialogHeader>
-                <DialogTitle>
-                  <motion.h2 
+                <DialogTitle 
+                  className="text-2xl font-bold text-center"
+                >
+                  <motion.span 
                     initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
                     animate={{ 
                       opacity: 1, 
@@ -145,11 +147,13 @@ export function ContactDialog() {
                         ease: [0.32, 0, 0.67, 0],
                       }
                     }}
-                    className="text-2xl font-bold text-center"
                   >
                     Get in Touch
-                  </motion.h2>
+                  </motion.span>
                 </DialogTitle>
+                <DialogDescription className="sr-only">
+                  Send me a message to discuss work opportunities
+                </DialogDescription>
               </DialogHeader>
               <motion.form 
                 onSubmit={handleSubmit} 

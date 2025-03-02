@@ -44,6 +44,11 @@ export const metadata: Metadata = {
     template: `%s | ${DATA.name} - Web Development Services`,
   },
   description: `${DATA.description} Specializing in modern web development, custom websites, and digital solutions for businesses.`,
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   keywords: [
     "web developer",
     "freelance developer",
@@ -114,6 +119,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="js">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <Script
           id="structured-data"
           type="application/ld+json"

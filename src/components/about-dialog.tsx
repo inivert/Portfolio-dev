@@ -1,6 +1,6 @@
 "use client"
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { DATA } from "@/data/resume"
@@ -41,8 +41,10 @@ export function AboutDialog() {
             }}
           >
             <DialogHeader>
-              <DialogTitle>
-                <motion.h2 
+              <DialogTitle 
+                className="text-2xl font-bold text-center mb-4"
+              >
+                <motion.span 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ 
                     opacity: 1, 
@@ -53,11 +55,13 @@ export function AboutDialog() {
                       ease: "easeOut",
                     }
                   }}
-                  className="text-2xl font-bold text-center mb-4"
                 >
                   About Me
-                </motion.h2>
+                </motion.span>
               </DialogTitle>
+              <DialogDescription className="sr-only">
+                Information about my background, education, and certifications
+              </DialogDescription>
             </DialogHeader>
 
             <div className="space-y-8">

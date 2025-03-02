@@ -114,7 +114,7 @@ export const DATA = {
     },
     {
       title: "Landscaping Landing Page",
-      href: "https://m-v-landscaping.vercel.app/",
+      href: "https://mv-landscaping.com/",
       description: "A sleek and modern portfolio website for showcasing landscape photography and services.",
       dates: "2024",
       technologies: ["Next.js", "TypeScript", "Tailwind", "Material UI"],

@@ -162,7 +162,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TooltipProvider delayDuration={0}>
+          <TooltipProvider delayDuration={100}>
             <div className="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background pointer-events-none"></div>
             <div className="absolute inset-0 z-[-2] bg-[linear-gradient(to_right,#4f4f4f15_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f15_1px,transparent_1px)] bg-[size:16px_28px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_10%,#000_40%,transparent_100%)]"></div>
             

@@ -66,7 +66,11 @@ const SocialLinks = () => {
                 </Link>
               </motion.div>
             </TooltipTrigger>
-            <TooltipContent side="bottom" sideOffset={5} className="bg-background/95 backdrop-blur-lg">
+            <TooltipContent 
+              side="bottom" 
+              sideOffset={5} 
+              className="bg-background/95 backdrop-blur-lg border border-primary/20 text-foreground font-medium px-3 py-1.5 shadow-lg"
+            >
               <p>{name}</p>
             </TooltipContent>
           </Tooltip>
@@ -99,7 +103,11 @@ export default function Page() {
               <ModeToggle />
             </motion.div>
           </TooltipTrigger>
-          <TooltipContent side="bottom" sideOffset={5} className="bg-background/95 backdrop-blur-lg">
+          <TooltipContent 
+            side="bottom" 
+            sideOffset={5} 
+            className="bg-background/95 backdrop-blur-lg border border-primary/20 text-foreground font-medium px-3 py-1.5 shadow-lg"
+          >
             <p>Theme</p>
           </TooltipContent>
         </Tooltip>

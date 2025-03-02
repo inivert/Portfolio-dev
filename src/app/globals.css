@@ -219,10 +219,56 @@
     }
   }
 
+  /* Better distribution for gradient animations on longer text */
+  @keyframes gradient-smooth {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    25% {
+      background-position: 50% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    75% {
+      background-position: 50% 50%;
+    }
+  }
+
   .animate-gradient {
     animation: gradient 8s ease infinite;
     overflow: visible;
     padding-right: 0.1em; /* Add a small padding to prevent edge cutoff */
+  }
+  
+  /* More gradual animation for longer text to prevent color mismatches */
+  h2.animate-gradient, 
+  h1.animate-gradient, 
+  .animate-gradient[class*="text-3xl"],
+  .animate-gradient[class*="text-4xl"],
+  .animate-gradient[class*="text-5xl"] {
+    animation: gradient-smooth 10s ease infinite;
+  }
+  
+  /* Enhanced readability for gradient text, especially on mobile */
+  @media (max-width: 640px) {
+    [class*="bg-clip-text"][class*="text-transparent"] {
+      letter-spacing: 0.01em; /* Slightly increase letter spacing on mobile */
+      font-weight: 700; /* Ensure bold weight for better readability */
+    }
+  }
+  
+  /* Enhances contrast for text transparency in light/dark themes */
+  .dark [class*="bg-clip-text"][class*="text-transparent"] {
+    --gradient-shadow-opacity: 0.25;
+    --gradient-text-filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+    filter: var(--gradient-text-filter);
+  }
+  
+  [class*="bg-clip-text"][class*="text-transparent"] {
+    --gradient-shadow-opacity: 0.2;
+    --gradient-text-filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+    filter: var(--gradient-text-filter);
   }
 
   /* Glass effect */

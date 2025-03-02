@@ -126,6 +126,10 @@ export default function Page() {
                   from="from-primary"
                   via="via-primary/80"
                   to="to-primary/60"
+                  shadowOpacity={25}
+                  shadowMode="auto"
+                  enableOutline={true}
+                  enhancedShadow={true}
                 />
                 <span className="text-3xl sm:text-5xl xl:text-6xl inline-block transform translate-y-0.5 sm:translate-y-0">🧑🏻‍💻</span>
               </div>
@@ -189,6 +193,10 @@ export default function Page() {
                 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 text-center sm:text-left"
                 from="from-primary"
                 to="to-secondary"
+                shadowOpacity={20}
+                shadowMode="auto"
+                enableOutline={true}
+                enhancedShadow={false}
               />
             </BlurFade>
             <div className="relative flex flex-wrap gap-1.5 p-3 sm:p-4 border border-primary/10 rounded-xl bg-transparent backdrop-blur-[2px] hover:backdrop-blur-sm transition-all duration-500 group overflow-hidden">
@@ -225,8 +233,13 @@ export default function Page() {
                   text="Check out my latest work"
                   className="text-xl sm:text-3xl font-bold tracking-tighter sm:text-5xl"
                   from="from-primary"
-                  via="via-accent"
+                  via="via-accent/90"
                   to="to-secondary"
+                  shadowOpacity={30}
+                  shadowMode="auto"
+                  enableOutline={true}
+                  enhancedShadow={true}
+                  style={{ backgroundSize: "300% auto" }}
                 />
                 <p className="text-muted-foreground text-xs sm:text-base md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed px-4 sm:px-0">
                   This section is currently under construction. Check back soon to see my latest projects!

@@ -60,7 +60,7 @@ export const DATA = {
         icon: Icons.whatsapp,
         navbar: true,
       },
-      email: {
+      Email: {
         name: "Send Email",
         url: "mailto:m.carlos90@outlook.com",
         icon: Icons.email,

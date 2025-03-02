@@ -1,4 +1,3 @@
-import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
@@ -114,17 +113,46 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="js">
       <head>
         <Script
           id="structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        <Script
+          id="animation-fix"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Add preload class to prevent animation flashes
+              document.documentElement.classList.add('preload');
+              
+              // Remove preload class after page is fully loaded
+              window.addEventListener('load', () => {
+                // Small delay to ensure smooth transitions
+                setTimeout(() => {
+                  document.documentElement.classList.remove('preload');
+                  document.documentElement.classList.add('loaded');
+                }, 100);
+              });
+              
+              // Fix for iOS vh units
+              const setVH = () => {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', \`\${vh}px\`);
+              };
+              
+              setVH();
+              window.addEventListener('resize', setVH);
+            `,
+          }}
+        />
       </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6 overflow-x-hidden",
+          "min-h-screen bg-background font-sans antialiased max-w-3xl mx-auto py-8 sm:py-12 md:py-24 px-4 sm:px-6 overflow-x-hidden relative",
+          "h-[calc(var(--vh,1vh)*100)]", // Fix for mobile height issues
           fontSans.variable
         )}
       >
@@ -135,12 +163,16 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider delayDuration={0}>
-                <Meteors number={50} />
-                {children}
-                <Navbar />
-                <Analytics />
-                <SpeedInsights />
-                <Toaster />
+            <div className="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background pointer-events-none"></div>
+            <div className="absolute inset-0 z-[-2] bg-[linear-gradient(to_right,#4f4f4f15_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f15_1px,transparent_1px)] bg-[size:16px_28px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_10%,#000_40%,transparent_100%)]"></div>
+            
+            <div className="relative z-10">
+              <Meteors number={15} />
+              {children}
+              <Analytics />
+              <SpeedInsights />
+              <Toaster />
+            </div>
           </TooltipProvider>
         </ThemeProvider>
       </body>

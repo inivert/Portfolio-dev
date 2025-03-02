@@ -5,6 +5,7 @@
 @layer base {
     :root {
       --background: 0 0% 100%;
+      --background-rgb: 255, 255, 255;
       --foreground: 240 10% 3.9%;
 
       --card: 0 0% 100%;
@@ -37,6 +38,7 @@
 
     .dark {
       --background: 240 10% 3.9%;
+      --background-rgb: 10, 10, 10;
       --foreground: 0 0% 98%;
 
       --card: 240 10% 3.9%;
@@ -64,65 +66,78 @@
       --input: 240 3.7% 15.9%;
       --ring: 240 4.9% 83.9%;
     }
-  }
-
-  @layer base {
+    
     * {
       @apply border-border;
     }
+    
     body {
       @apply bg-background text-foreground;
+      font-feature-settings: "rlig" 1, "calt" 1;
+      overscroll-behavior: none; /* Prevents bounce effects */
     }
   }
 
-  /* Dialog and Scrollbar Styles */
   body {
-    overflow-y: scroll; /* Always show scrollbar to prevent layout shift */
-    scrollbar-gutter: stable; /* Reserve space for scrollbar */
+    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
   }
 
-  /* When dialog is open */
   body:has(dialog[open]), 
-  html.dialog-open {
+  body:has(.prevent-scroll) {
     overflow: hidden;
-    padding-right: var(--scrollbar-width, 0px); /* Use dynamic width */
   }
 
-  /* Hide scrollbar but maintain padding */
+  /* Hide scrollbar for Chrome, Safari and Opera */
   .scrollbar-hide {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
   }
 
   .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+    display: none; /* Chrome, Safari, Opera*/
   }
 
-  /* Custom scrollbar styles */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: hsl(var(--background));
+    border-radius: 5px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground) / 0.3);
-    border-radius: 4px;
+    background-color: hsl(var(--muted));
+    border-radius: 14px;
+    border: 2px solid hsl(var(--background));
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground) / 0.5);
+    background-color: hsl(var(--muted-foreground));
   }
 
-  /* Firefox */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+  /* General Performance Optimizations */
+  .will-change-transform {
+    will-change: transform;
   }
 
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  .hardware-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Fix excessive animations by forcing no animations on page load/refresh */
+  .preload * {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Code block styling */
   h3 code {
     @apply !text-lg md:!text-xl;
   }
@@ -172,21 +187,111 @@
   }
  
   code > [data-line]::before {
-  counter-increment: line;
-  content: counter(line);
+    counter-increment: line;
+    content: counter(line);
+   
+    /* Other styling */
+    display: inline-block;
+    width: 1rem;
+    margin-right: 2rem;
+    text-align: right;
+    color: gray;
+  }
  
-  /* Other styling */
-  display: inline-block;
-  width: 1rem;
-  margin-right: 2rem;
-  text-align: right;
-  color: gray;
-}
+  code[data-line-numbers-max-digits="2"] > [data-line]::before {
+    width: 2rem;
+  }
  
-code[data-line-numbers-max-digits="2"] > [data-line]::before {
-  width: 2rem;
-}
- 
-code[data-line-numbers-max-digits="3"] > [data-line]::before {
-  width: 3rem;
-}
+  code[data-line-numbers-max-digits="3"] > [data-line]::before {
+    width: 3rem;
+  }
+
+  /* Animations */
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    animation: gradient 8s ease infinite;
+    background-size: 200% auto !important;
+  }
+
+  /* Glass effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .glass {
+    background: rgba(15, 15, 15, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Improved hover effects with hardware acceleration */
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), 
+                box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-3px) translateZ(0);
+    box-shadow: 0 8px 25px -8px hsl(var(--primary) / 0.4);
+  }
+
+  .dark .hover-lift:hover {
+    box-shadow: 0 8px 25px -8px hsl(var(--primary) / 0.6);
+  }
+
+  /* Fix for animated border to ensure smooth animation */
+  .animated-border {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    isolation: isolate;
+    transform: translateZ(0);
+  }
+
+  .animated-border::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    background: conic-gradient(
+      from 0deg at 50% 50%,
+      hsl(var(--primary) / 0),
+      hsl(var(--primary) / 0.2),
+      hsl(var(--primary) / 0.4),
+      hsl(var(--primary) / 0.2),
+      hsl(var(--primary) / 0)
+    );
+    z-index: -1;
+    animation: rotate 5s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Force no animation when loading the page */
+  html.js:not(.loaded) * {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+  }

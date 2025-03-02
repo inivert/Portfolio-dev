@@ -8,9 +8,9 @@ export const DATA = {
   location: "Providence, RI",
   locationLink: "https://www.google.com/maps/place/Providence,+RI/",
   description:
-    "From soldier to cybersecurity professional and now a website developer freelancer.",
+    "Ex-soldier who got into cybersecurity before finding my true calling as a web developer.",
   summary:
-    "I build custom websites and web apps for businesses and individuals. After serving in the Army and working in cybersecurity, I taught myself to code and now work as a freelance developer. Focus on creating fast, secure sites using Nuxt.js that actually help my clients grow their business.",
+    "After my time in the Army and working in security, I taught myself to code and discovered I love building websites. Now I make clean, fast sites with Nuxt.js that load quickly and don't break. My background in security means I build stuff that keeps your data safe too. No fancy jargon — I just create sites that work well and help your business reach more people.",
   avatarUrl: "/me.jpg",
   skills: [
     "Nuxt.js",

@@ -40,11 +40,12 @@ export default function GradientText({
   return (
     <Element
       className={cn(
-        "bg-clip-text text-transparent bg-gradient-to-r",
+        "bg-clip-text text-transparent bg-gradient-to-r font-heading",
         from,
         via,
         to,
         animate && "animate-gradient bg-[length:200%_auto]",
+        "overflow-visible",
         className
       )}
       {...props}

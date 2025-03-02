@@ -221,7 +221,8 @@
 
   .animate-gradient {
     animation: gradient 8s ease infinite;
-    background-size: 200% auto !important;
+    overflow: visible;
+    padding-right: 0.1em; /* Add a small padding to prevent edge cutoff */
   }
 
   /* Glass effect */

@@ -118,11 +118,11 @@ export default function Page() {
         <Spotlight className="mx-auto w-full max-w-2xl space-y-6 sm:space-y-8 overflow-visible" size={600}>
           <div className="flex flex-col-reverse sm:flex-row gap-4 sm:gap-6 sm:justify-between overflow-visible">
             <div className="flex-col flex flex-1 space-y-3 sm:space-y-4 mt-5 sm:mt-0 text-center sm:text-left overflow-visible">
-              <div className="flex items-center sm:items-baseline gap-1.5 sm:gap-2 justify-center sm:justify-start">
+              <div className="flex items-center sm:items-baseline gap-1.5 sm:gap-2 justify-center sm:justify-start overflow-visible">
                 <GradientText 
                   element="h1"
                   text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
-                  className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none overflow-visible"
+                  className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none overflow-visible whitespace-nowrap pr-1"
                   from="from-primary"
                   via="via-primary/80"
                   to="to-primary/60"

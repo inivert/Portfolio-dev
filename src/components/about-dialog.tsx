@@ -71,7 +71,7 @@ export function AboutDialog() {
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
                 className="space-y-4"
               >
-                <h3 className="text-xl font-semibold">About</h3>
+                <h3 className="text-xl font-heading">About</h3>
                 <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
                   {DATA.summary}
                 </Markdown>
@@ -83,7 +83,7 @@ export function AboutDialog() {
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.3 } }}
                 className="space-y-4"
               >
-                <h3 className="text-xl font-semibold">Education</h3>
+                <h3 className="text-xl font-heading">Education</h3>
                 <div className="space-y-3">
                   {DATA.education.map((education) => (
                     <ResumeCard
@@ -105,7 +105,7 @@ export function AboutDialog() {
                 animate={{ opacity: 1, y: 0, transition: { delay: 0.4 } }}
                 className="space-y-4"
               >
-                <h3 className="text-xl font-semibold">Certifications</h3>
+                <h3 className="text-xl font-heading">Certifications</h3>
                 <div className="space-y-3">
                   {DATA.certifications.map((certification) => (
                     <ResumeCard

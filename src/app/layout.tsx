@@ -3,7 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { Inter as FontSans, Plus_Jakarta_Sans as FontHeading } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -13,6 +13,18 @@ import { Toaster } from "@/components/ui/toaster"
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+  preload: true,
+  adjustFontFallback: true,
+});
+
+const fontHeading = FontHeading({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+  preload: true,
+  adjustFontFallback: true,
+  weight: ["500", "600", "700"],
 });
 
 // Structured data for personal portfolio
@@ -158,7 +170,9 @@ export default function RootLayout({
         className={cn(
           "min-h-screen bg-background font-sans antialiased max-w-3xl mx-auto py-8 sm:py-12 md:py-24 px-4 sm:px-6 overflow-x-hidden relative",
           "h-[calc(var(--vh,1vh)*100)]", // Fix for mobile height issues
-          fontSans.variable
+          fontSans.variable,
+          fontHeading.variable,
+          "font-[var(--font-sans),system-ui,-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open_Sans','Helvetica_Neue',sans-serif]"
         )}
       >
         <ThemeProvider

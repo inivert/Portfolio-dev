@@ -124,7 +124,7 @@ export function ContactDialog() {
             >
               <DialogHeader>
                 <DialogTitle 
-                  className="text-2xl font-bold text-center"
+                  className="text-2xl font-heading text-center"
                 >
                   <motion.span 
                     initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}

@@ -51,9 +51,12 @@ const Card3D = ({
   useEffect(() => {
     if (!isMounted || !isRotated) return;
 
+    // Store a reference to the current card element to prevent closure issues
+    const currentCard = cardRef.current;
+    
     const handleMouseMove = (e: MouseEvent) => {
-      if (!cardRef.current || !isHovering) return;
-      const rect = cardRef.current.getBoundingClientRect();
+      if (!currentCard || !isHovering) return;
+      const rect = currentCard.getBoundingClientRect();
 
       // Calculate mouse position relative to the card center
       const centerX = rect.left + rect.width / 2;
@@ -91,18 +94,18 @@ const Card3D = ({
     };
 
     // Add event listeners to the card element only
-    if (cardRef.current) {
-      cardRef.current.addEventListener("mouseenter", handleMouseEnter);
-      cardRef.current.addEventListener("mouseleave", handleMouseLeave);
+    if (currentCard) {
+      currentCard.addEventListener("mouseenter", handleMouseEnter);
+      currentCard.addEventListener("mouseleave", handleMouseLeave);
     }
     
     // Add mousemove to window to ensure smooth tracking
     window.addEventListener("mousemove", handleMouseMove);
     
     return () => {
-      if (cardRef.current) {
-        cardRef.current.removeEventListener("mouseenter", handleMouseEnter);
-        cardRef.current.removeEventListener("mouseleave", handleMouseLeave);
+      if (currentCard) {
+        currentCard.removeEventListener("mouseenter", handleMouseEnter);
+        currentCard.removeEventListener("mouseleave", handleMouseLeave);
       }
       window.removeEventListener("mousemove", handleMouseMove);
     };

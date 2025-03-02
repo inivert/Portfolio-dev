@@ -14,7 +14,7 @@ export const useFloatingAnimation = (selector: string, options = {}) => {
     });
 
     return () => animation.pause();
-  }, [selector]);
+  }, [selector, options]);
 };
 
 export const useHoverAnimation = (selector: string) => {
@@ -69,7 +69,7 @@ export const useStaggerAnimation = (selector: string, options = {}) => {
       });
       hasAnimated.current = true;
     }
-  }, [selector]);
+  }, [selector, options]);
 };
 
 export const usePulseAnimation = (selector: string, options = {}) => {
@@ -86,5 +86,5 @@ export const usePulseAnimation = (selector: string, options = {}) => {
     });
 
     return () => animation.pause();
-  }, [selector]);
+  }, [selector, options]);
 }; 

@@ -242,39 +242,116 @@ export default function Page() {
                   style={{ backgroundSize: "300% auto" }}
                 />
                 <p className="text-muted-foreground text-xs sm:text-base md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed px-4 sm:px-0">
-                  This section is currently under construction. Check back soon to see my latest projects!
+                  Showcasing my professional work and creative side projects
                 </p>
               </div>
             </div>
           </BlurFade>
           {DATA.projects && DATA.projects.length > 0 && (
-            <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-5 max-w-[800px] mx-auto px-2 sm:px-3">
-              {DATA.projects.map((project, id) => (
-                <BlurFade
-                  key={project.title}
-                  delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-                >
-                  <ProjectCard
-                    href={project.href}
-                    key={project.title}
-                    title={project.title}
-                    description={project.description}
-                    dates={project.dates}
-                    tags={project.technologies ? [...project.technologies] : []}
-                    image={project.image}
-                    video={project.video}
-                    links={project.links ? 
-                      Object.fromEntries(
-                        Object.entries(project.links).map(([key, value]) => [
-                          key, 
-                          typeof value === 'string' ? value : value.href
-                        ])
-                      ) : undefined
-                    }
-                    className="mobile-project-card"
-                  />
+            <div className="space-y-10 sm:space-y-16 max-w-[800px] mx-auto px-2 sm:px-3">
+              {/* Freelance Work Section */}
+              <div className="space-y-5 sm:space-y-7">
+                <BlurFade delay={BLUR_FADE_DELAY * 12}>
+                  <div className="text-center space-y-2">
+                    <GradientText
+                      element="h3"
+                      text="Freelance Work"
+                      className="text-lg sm:text-2xl font-bold"
+                      from="from-primary"
+                      to="to-secondary"
+                      shadowOpacity={20}
+                      shadowMode="auto"
+                      enableOutline={true}
+                    />
+                    <p className="text-muted-foreground text-xs sm:text-sm max-w-[600px] mx-auto">
+                      Professional projects I've completed for clients, showcasing my expertise in delivering tailored solutions.
+                    </p>
+                  </div>
                 </BlurFade>
-              ))}
+                
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-5">
+                  {DATA.projects
+                    .filter(project => project.category === "Freelance Work")
+                    .map((project, id) => (
+                      <BlurFade
+                        key={project.title}
+                        delay={BLUR_FADE_DELAY * 13 + id * 0.05}
+                      >
+                        <ProjectCard
+                          href={project.href}
+                          key={project.title}
+                          title={project.title}
+                          description={project.description}
+                          dates={project.dates}
+                          tags={project.technologies ? [...project.technologies] : []}
+                          image={project.image}
+                          video={project.video}
+                          links={project.links ? 
+                            Object.fromEntries(
+                              Object.entries(project.links).map(([key, value]) => [
+                                key, 
+                                typeof value === 'string' ? value : value.href
+                              ])
+                            ) : undefined
+                          }
+                          className="mobile-project-card"
+                        />
+                      </BlurFade>
+                    ))}
+                </div>
+              </div>
+
+              {/* Templates & Side Projects Section */}
+              <div className="space-y-5 sm:space-y-7 pt-2 sm:pt-4">
+                <BlurFade delay={BLUR_FADE_DELAY * 14}>
+                  <div className="text-center space-y-2">
+                    <GradientText
+                      element="h3"
+                      text="Templates & Side Projects"
+                      className="text-lg sm:text-2xl font-bold"
+                      from="from-accent"
+                      to="to-primary"
+                      shadowOpacity={20}
+                      shadowMode="auto"
+                      enableOutline={true}
+                    />
+                    <p className="text-muted-foreground text-xs sm:text-sm max-w-[600px] mx-auto">
+                      Portfolio of templates and experimental projects showcasing my design skills and technical capabilities.
+                    </p>
+                  </div>
+                </BlurFade>
+                
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-5">
+                  {DATA.projects
+                    .filter(project => project.category === "Templates & Side Projects")
+                    .map((project, id) => (
+                      <BlurFade
+                        key={project.title}
+                        delay={BLUR_FADE_DELAY * 15 + id * 0.05}
+                      >
+                        <ProjectCard
+                          href={project.href}
+                          key={project.title}
+                          title={project.title}
+                          description={project.description}
+                          dates={project.dates}
+                          tags={project.technologies ? [...project.technologies] : []}
+                          image={project.image}
+                          video={project.video}
+                          links={project.links ? 
+                            Object.fromEntries(
+                              Object.entries(project.links).map(([key, value]) => [
+                                key, 
+                                typeof value === 'string' ? value : value.href
+                              ])
+                            ) : undefined
+                          }
+                          className="mobile-project-card"
+                        />
+                      </BlurFade>
+                    ))}
+                </div>
+              </div>
             </div>
           )}
         </div>

@@ -97,12 +97,22 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "Shark Restaurant",
+      href: "https://shark-restaurant.com/",
+      description: "A stylish restaurant website for Shark, featuring elegant design, menu showcase, and a seamless WordPress experience.",
+      dates: "2024",
+      technologies: ["WordPress", "PHP", "CSS", "JavaScript"],
+      video: "/videos/Shark.mp4",
+      category: "Freelance Work"
+    },
+    {
       title: "Restaurant Page",
       href: "https://templatedemo.vercel.app/",
       description: "A modern and responsive restaurant website template showcasing menu items, services, and booking functionality.",
       dates: "2024",
       technologies: ["Vite", "Vue.js", "gsap", "TypeScript"],
-      video: "/videos/Restaurant-Template.mp4"
+      video: "/videos/Restaurant-Template.mp4",
+      category: "Templates & Side Projects"
     },
     {
       title: "Restaurant Page V2",
@@ -110,15 +120,17 @@ export const DATA = {
       description: "An enhanced version of the restaurant template with improved UI/UX and additional features.",
       dates: "2024",
       technologies: ["Vite", "React", "TypeScript"],
-      video: "/videos/Restaurant-temp2.mp4"
+      video: "/videos/Restaurant-temp2.mp4",
+      category: "Templates & Side Projects"
     },
     {
-      title: "Landscaping Landing Page",
+      title: "Landscaping site",
       href: "https://mv-landscaping.com/",
       description: "A sleek and modern portfolio website for showcasing landscape photography and services.",
       dates: "2024",
       technologies: ["Next.js", "TypeScript", "Tailwind", "Material UI"],
-      video: "/videos/landscape-temp.mp4"
+      video: "/videos/landscape-temp.mp4",
+      category: "Freelance Work"
     }
   ] as Array<{
     title: string;
@@ -128,6 +140,7 @@ export const DATA = {
     technologies: readonly string[];
     image?: string;
     video?: string;
+    category: string;
     links?: readonly {
       icon: React.ReactNode;
       type: string;

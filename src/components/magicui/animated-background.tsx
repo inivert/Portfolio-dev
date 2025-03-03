@@ -82,19 +82,19 @@ export default function AnimatedBackground({
     
     // Define color maps for light and dark themes
     const colorMapDark = {
-      primary: { r: 220, g: 220, b: 255 },     // Light purple/white
-      secondary: { r: 200, g: 220, b: 255 },   // Light blue/white
-      accent: { r: 255, g: 240, b: 220 },      // Light amber/white
-      destructive: { r: 255, g: 220, b: 220 }, // Light red/white
-      muted: { r: 220, g: 220, b: 220 }        // Light gray/white
+      primary: { r: 180, g: 180, b: 190 },     // Light grey with slight blue tint
+      secondary: { r: 170, g: 170, b: 180 },   // Light grey
+      accent: { r: 190, g: 190, b: 195 },      // Very light grey
+      destructive: { r: 190, g: 180, b: 180 }, // Light grey with slight red tint
+      muted: { r: 160, g: 160, b: 170 }        // Medium grey
     };
     
     const colorMapLight = {
-      primary: { r: 10, g: 10, b: 80 },        // EXTREMELY dark blue/purple for max contrast
-      secondary: { r: 10, g: 10, b: 120 },     // Very dark blue
-      accent: { r: 120, g: 40, b: 10 },        // Very dark brown/amber
-      destructive: { r: 120, g: 10, b: 10 },   // Very dark red
-      muted: { r: 10, g: 10, b: 50 }           // Very dark slate
+      primary: { r: 100, g: 100, b: 110 },     // Medium grey with slight blue tint
+      secondary: { r: 90, g: 90, b: 100 },     // Medium-dark grey
+      accent: { r: 110, g: 110, b: 115 },      // Medium-light grey
+      destructive: { r: 110, g: 100, b: 100 }, // Medium grey with slight red tint
+      muted: { r: 80, g: 80, b: 90 }           // Darker grey
     };
     
     // Select the appropriate color map based on theme
@@ -182,14 +182,14 @@ export default function AnimatedBackground({
         // Calculate individual pulse effect for more organic movement
         const pulseFactor = 1 + 0.1 * Math.sin(pulsePhase + particle.pulseOffset);
         
-        // Calculate current opacity
-        const opacity = Math.max(0.6, Math.min(0.9, particle.opacity));
+        // Calculate current opacity - reduced to make particles more transparent (roughly 30% opacity)
+        const opacity = Math.max(0.2, Math.min(0.3, particle.opacity * 0.3)); 
         
         // For light theme particles, very minimal halo
         if (!isDarkTheme) {
           ctx.beginPath();
           ctx.arc(particle.x, particle.y, particle.size * 1.05 * pulseFactor, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, 0.4)`;
+          ctx.strokeStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, 0.15)`; // Reduced from 0.4
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }
@@ -197,7 +197,7 @@ export default function AnimatedBackground({
         // Draw core particle - this is the main visible element now
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size * pulseFactor, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, ${isDarkTheme ? opacity : 0.9})`;
+        ctx.fillStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, ${isDarkTheme ? opacity : 0.3})`; // Reduced from 0.9 to 0.3
         ctx.fill();
         
         // Add very simple motion trail as small dots

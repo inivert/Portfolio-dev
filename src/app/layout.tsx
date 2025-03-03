@@ -167,6 +167,7 @@ export default function RootLayout({
         />
       </head>
       <body
+        suppressHydrationWarning
         className={cn(
           "min-h-screen bg-background font-sans antialiased max-w-3xl mx-auto py-8 sm:py-12 md:py-24 px-4 sm:px-6 overflow-x-hidden relative",
           "h-[calc(var(--vh,1vh)*100)]", // Fix for mobile height issues

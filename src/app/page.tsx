@@ -257,20 +257,21 @@ export default function Page() {
                 <div className="inline-block rounded-lg bg-foreground text-background px-2 py-0.5 sm:px-3 sm:py-1 text-xs sm:text-sm">
                   My Projects
                 </div>
-                <GradientText
-                  element="h2"
-                  text="Check out my latest work"
-                  className="text-xl sm:text-3xl font-bold tracking-tighter sm:text-5xl"
-                  from="from-primary/90"
-                  via="via-accent/80"
-                  to="to-secondary/90"
-                  shadowOpacity={40}
-                  shadowMode="auto"
-                  enableOutline={true}
-                  enhancedShadow={true}
-                  animate={false}
-                  style={{ backgroundSize: "300% auto" }}
-                />
+                <div className="mb-3">
+                  <GradientText
+                    element="h2"
+                    text="Check out my latest work"
+                    className="text-xl sm:text-3xl font-bold tracking-tighter sm:text-5xl"
+                    from="from-primary"
+                    via="via-accent"
+                    to="to-secondary"
+                    shadowOpacity={35}
+                    shadowMode="auto"
+                    enableOutline={true}
+                    enhancedShadow={true}
+                    animate={false}
+                  />
+                </div>
                 <p className="text-muted-foreground text-xs sm:text-base md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed px-4 sm:px-0">
                   Showcasing my professional work and creative side projects
                 </p>

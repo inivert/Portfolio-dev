@@ -131,6 +131,26 @@
     backface-visibility: hidden;
   }
 
+  /* Media rendering fix - prevent oversharpening */
+  img, video, .media-element {
+    image-rendering: auto !important;
+    backface-visibility: visible !important;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    filter: blur(0.3px) !important;
+    will-change: auto !important;
+    -webkit-font-smoothing: subpixel-antialiased !important;
+    -webkit-transform-style: flat !important;
+    transform-style: flat !important;
+    transition: none !important;
+    transition-property: none !important;
+  }
+
+  /* Hover effects should be applied to containers, not media */
+  .group:hover .media-element {
+    transform: translate3d(0, 0, 0) !important;
+    filter: blur(0.3px) !important;
+  }
+
   /* Fix excessive animations by forcing no animations on page load/refresh */
   .preload * {
     transition: none !important;

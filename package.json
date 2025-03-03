@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "optimize:videos": "node scripts/optimize-videos.js",
+    "generate:thumbnails": "node scripts/generate-thumbnails.js",
+    "prepare:media": "pnpm optimize:videos && pnpm generate:thumbnails"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.0.4",

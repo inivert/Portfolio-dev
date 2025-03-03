@@ -4,6 +4,7 @@ import { Badge } from "./ui/badge";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { ExternalLinkIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { VideoPlayer } from "./VideoPlayer";
 
 interface ProjectCardProps {
   title: string;
@@ -53,12 +54,17 @@ export function ProjectCard({
           "transition-all duration-300 ease-out", 
           "hover:shadow-lg hover:shadow-primary/5", 
           "hover:-translate-y-1",
-          "will-change-transform",
           "border border-primary/5",
           "text-xs sm:text-sm md:text-base",
           href && "cursor-pointer",
           className
         )}
+        style={{
+          backfaceVisibility: 'visible',
+          imageRendering: 'auto',
+          transform: 'translate3d(0, 0, 0)',
+          transformStyle: 'flat'
+        }}
       >
         {/* Subtle gradient background */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-background/0 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
@@ -75,21 +81,21 @@ export function ProjectCard({
                   src={image}
                   alt={title}
                   fill
-                  className="object-cover transition-all duration-700 ease-in-out group-hover:scale-[1.03] group-hover:brightness-110"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover media-element"
+                  style={{ 
+                    imageRendering: 'auto', 
+                    filter: 'blur(0.3px)',
+                    transform: 'translate3d(0, 0, 0)',
+                    willChange: 'auto',
+                    backfaceVisibility: 'visible'
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-50"></div>
               </div>
             )}
             {video && (
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="object-cover h-full w-full transition-all duration-700 ease-in-out group-hover:scale-[1.03]"
-              >
-                <source src={video} type="video/mp4" />
-              </video>
+              <VideoPlayer videoSrc={video} />
             )}
             {/* Overlay indicator on hover for non-touch devices */}
             <div className="absolute inset-0 flex items-center justify-center bg-primary/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">

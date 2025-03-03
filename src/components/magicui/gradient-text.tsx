@@ -95,51 +95,41 @@ export default function GradientText({
   // Calculate shadow color and style
   const baseShadowOpacity = shadowOpacity / 100;
   
-  // Apply text shadow in the opposite color of the theme for better contrast
-  const textShadowColor = !isDarkTheme ? 
-    `rgba(0, 0, 0, ${baseShadowOpacity})` :
-    `rgba(255, 255, 255, ${baseShadowOpacity})`;
-  
-  // Secondary shadow color (same as the theme color but less intense)
-  const secondaryShadowColor = isDarkTheme ? 
-    `rgba(0, 0, 0, ${baseShadowOpacity * 0.7})` :
-    `rgba(255, 255, 255, ${baseShadowOpacity * 0.7})`;
-  
   // Create a more enhanced shadow for larger text when enhancedShadow is true
   let textShadow = 'none';
   
   if (shadowOpacity > 0) {
     if (enhancedShadow && isLikelyHeading) {
-      // Enhanced shadow for headings with multiple layers
-      textShadow = `
-        0 1px 1px ${secondaryShadowColor},
-        0 0 1px ${textShadowColor},
-        0 1px 3px ${textShadowColor},
-        0 0 5px ${secondaryShadowColor}
-      `;
+      // Simplified shadow effect to avoid artifacts
+      textShadow = isDarkTheme 
+        ? `0 1px 2px rgba(0, 0, 0, ${baseShadowOpacity * 0.8})` 
+        : `0 1px 2px rgba(255, 255, 255, ${baseShadowOpacity * 0.8})`;
     } else {
-      // Standard shadow for regular text
-      textShadow = `0 1px 2px ${secondaryShadowColor}, 0 0 1px ${textShadowColor}`;
+      // Standard shadow for regular text - simplified
+      textShadow = isDarkTheme 
+        ? `0 1px 1px rgba(0, 0, 0, ${baseShadowOpacity * 0.8})` 
+        : `0 1px 1px rgba(255, 255, 255, ${baseShadowOpacity * 0.8})`;
     }
   }
   
-  // Outline effect for better readability
+  // Outline effect for better readability - simplified to avoid artifacts
   const outlineEffect = enableOutline ? {
     WebkitTextStroke: isDarkTheme 
-      ? `0.5px rgba(0, 0, 0, ${Math.min(baseShadowOpacity * 0.8, 0.15)})` 
-      : `0.2px rgba(255, 255, 255, ${Math.min(baseShadowOpacity * 0.8, 0.15)})`,
+      ? `0.3px rgba(0, 0, 0, ${Math.min(baseShadowOpacity * 0.8, 0.2)})` 
+      : `0.3px rgba(255, 255, 255, ${Math.min(baseShadowOpacity * 0.8, 0.2)})`,
   } : {};
   
   // Auto-adjust gradient size based on text length to ensure consistent coloring
   const gradientSize = adjustGradient ? {
-    backgroundSize: props.style?.backgroundSize || 
-      (animate 
-        ? text.length > 20 
-          ? "300% auto" 
-          : text.length > 10 
-            ? "250% auto" 
-            : "200% auto"
-        : "100% auto")
+    backgroundSize: props.style?.backgroundSize || "150% auto", // Consistent size for better readability
+    backgroundPosition: "0 0", // Start gradient at top left
+    backgroundClip: "text", // Ensure gradient only applies to text
+    WebkitBackgroundClip: "text", // For Safari support
+    color: "transparent", // Make the text transparent to show the gradient
+    // Add better contrast using text shadow
+    textShadow: isDarkTheme
+      ? `0 1px 3px rgba(0, 0, 0, ${Math.min(baseShadowOpacity + 0.2, 0.5)})`
+      : `0 1px 3px rgba(0, 0, 0, ${Math.min(baseShadowOpacity + 0.1, 0.4)})`,
   } : {};
 
   return (
@@ -150,13 +140,16 @@ export default function GradientText({
         via,
         to,
         animate && "animate-gradient",
-        "overflow-visible",
+        "overflow-visible block", // Set to block to ensure proper text rendering
         className
       )}
       style={{
-        textShadow,
+        textShadow: gradientSize.textShadow || textShadow, // Use the shadow from gradientSize
         ...outlineEffect,
         ...gradientSize,
+        padding: "0.1em 0", // Add slight padding to ensure descenders are fully visible
+        letterSpacing: isLikelyHeading ? "-0.02em" : "normal", // Improve readability for headings
+        fontWeight: props.style?.fontWeight || "bold", // Ensure good weight for readability
         ...props.style
       }}
       {...props}

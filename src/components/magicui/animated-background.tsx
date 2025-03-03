@@ -254,19 +254,24 @@ export default function AnimatedBackground({
   return (
     <canvas
       ref={canvasRef}
-      className={cn("fixed inset-0 pointer-events-none opacity-100", className)}
+      className={cn("pointer-events-none opacity-100", className)}
       aria-hidden="true"
       style={{ 
         background: 'transparent', 
         mixBlendMode: 'normal',
         zIndex: -3,
-        position: 'fixed',
+        position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
+        height: '100%',
+        width: '100%',
         visibility: 'visible',
-        filter: 'none'
+        filter: 'none',
+        margin: 0,
+        padding: 0,
+        overflow: 'hidden'
       }}
     />
   );

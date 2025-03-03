@@ -11,7 +11,7 @@ import { BLUR_FADE_DELAY } from "@/constants/animation";
 import { ContactDialog } from "@/components/contact-dialog";
 import { AboutDialog } from "@/components/about-dialog";
 import { useFloatingAnimation, useHoverAnimation, useStaggerAnimation, usePulseAnimation } from "@/animations/hooks";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import AnimatedBackground from "@/components/magicui/animated-background";
 import Card3D from "@/components/magicui/card-3d";
 import Spotlight from "@/components/magicui/spotlight";
@@ -19,12 +19,14 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import anime from "animejs";
 import { motion } from "framer-motion";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 const iconVariants = {
   initial: { scale: 1 },
@@ -76,6 +78,54 @@ const SocialLinks = () => {
           </Tooltip>
         ))}
     </div>
+  );
+};
+
+// Heartbeat Dot Component for Available status
+const HeartbeatDot = () => {
+  const dotRef = useRef<HTMLSpanElement>(null);
+  const pulseRef = useRef<HTMLSpanElement>(null);
+  
+  useEffect(() => {
+    // Core dot animation (heartbeat effect)
+    const dotAnimation = anime({
+      targets: dotRef.current,
+      scale: [1, 1.15, 1, 1.05, 1],
+      duration: 1500,
+      easing: 'easeInOutQuad',
+      loop: true
+    });
+    
+    // Outer pulse ring animation
+    const pulseAnimation = anime({
+      targets: pulseRef.current,
+      opacity: [0.7, 0],
+      scale: [1, 2.2],
+      duration: 1500,
+      easing: 'easeOutQuart',
+      loop: true
+    });
+    
+    return () => {
+      dotAnimation.pause();
+      pulseAnimation.pause();
+    };
+  }, []);
+  
+  return (
+    <span className="relative flex h-3 w-3">
+      {/* Background pulse ring */}
+      <span 
+        ref={pulseRef}
+        className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-70"
+      ></span>
+      
+      {/* Main dot with heartbeat animation */}
+      <span 
+        ref={dotRef}
+        className="absolute inline-flex h-full w-full rounded-full bg-emerald-500"
+      ></span>
+    </span>
   );
 };
 
@@ -215,18 +265,9 @@ export default function Page() {
         <div className="mx-auto max-w-2xl px-1 sm:px-0">
           <div className="flex min-h-0 flex-col gap-y-3 sm:gap-y-4">
             <BlurFade delay={BLUR_FADE_DELAY * 9}>
-              <GradientText
-                element="h2"
-                text="Skills"
-                className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 text-center sm:text-left"
-                from="from-primary/90"
-                to="to-secondary/90"
-                shadowOpacity={35}
-                shadowMode="auto"
-                enableOutline={true}
-                enhancedShadow={false}
-                animate={false}
-              />
+              <h2 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 text-center sm:text-left">
+                Skills
+              </h2>
             </BlurFade>
             <div className="relative flex flex-wrap gap-1.5 p-3 sm:p-4 border border-primary/10 rounded-xl bg-transparent backdrop-blur-[2px] hover:backdrop-blur-sm transition-all duration-500 group overflow-hidden">
               {/* Subtle gradient background that only appears on hover */}
@@ -258,19 +299,9 @@ export default function Page() {
                   My Projects
                 </div>
                 <div className="mb-3">
-                  <GradientText
-                    element="h2"
-                    text="Check out my latest work"
-                    className="text-xl sm:text-3xl font-bold tracking-tighter sm:text-5xl"
-                    from="from-primary"
-                    via="via-accent"
-                    to="to-secondary"
-                    shadowOpacity={35}
-                    shadowMode="auto"
-                    enableOutline={true}
-                    enhancedShadow={true}
-                    animate={false}
-                  />
+                  <h2 className="text-xl sm:text-3xl font-bold tracking-tighter sm:text-5xl">
+                    Check out my latest work
+                  </h2>
                 </div>
                 <p className="text-muted-foreground text-xs sm:text-base md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed px-4 sm:px-0">
                   Showcasing my professional work and creative side projects
@@ -284,18 +315,9 @@ export default function Page() {
               <div className="space-y-5 sm:space-y-7">
                 <BlurFade delay={BLUR_FADE_DELAY * 12}>
                   <div className="text-center space-y-2">
-                    <GradientText
-                      element="h3"
-                      text="Freelance Work"
-                      className="text-lg sm:text-2xl font-bold"
-                      from="from-primary/90"
-                      to="to-secondary/90"
-                      shadowOpacity={35}
-                      shadowMode="auto"
-                      enableOutline={true}
-                      enhancedShadow={true}
-                      animate={false}
-                    />
+                    <h3 className="text-lg sm:text-2xl font-bold">
+                      Freelance Work
+                    </h3>
                     <p className="text-muted-foreground text-xs sm:text-sm max-w-[600px] mx-auto">
                       Professional projects I&apos;ve completed for clients, showcasing my expertise in delivering tailored solutions.
                     </p>
@@ -338,20 +360,9 @@ export default function Page() {
               <div className="space-y-5 sm:space-y-7 pt-2 sm:pt-4">
                 <BlurFade delay={BLUR_FADE_DELAY * 14}>
                   <div className="text-center space-y-2">
-                    <GradientText
-                      element="h3"
-                      text="Templates & Side Projects"
-                      className="text-lg sm:text-2xl font-bold"
-                      from="from-primary/90"
-                      via="via-secondary/80"
-                      to="to-accent/90"
-                      shadowOpacity={40}
-                      shadowMode="auto"
-                      enableOutline={true}
-                      enhancedShadow={true}
-                      animate={false}
-                      style={{ backgroundSize: "250% auto" }}
-                    />
+                    <h3 className="text-lg sm:text-2xl font-bold">
+                      Templates & Side Projects
+                    </h3>
                     <p className="text-muted-foreground text-xs sm:text-sm max-w-[600px] mx-auto">
                       Portfolio of templates and experimental projects showcasing my design skills and technical capabilities.
                     </p>
@@ -392,6 +403,38 @@ export default function Page() {
             </div>
           )}
         </div>
+      </section>
+      
+      {/* Hire Me CTA Section */}
+      <section className="w-full py-16 sm:py-20 mt-6 sm:mt-10 overflow-hidden relative">
+        <BlurFade delay={BLUR_FADE_DELAY * 16}>
+          <Spotlight className="relative px-4 sm:px-6 flex flex-col items-center text-center max-w-3xl mx-auto space-y-4 sm:space-y-6">
+            <div className="w-full max-w-2xl rounded-xl p-8 sm:p-10">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-foreground text-background text-xs sm:text-sm font-medium mb-3 sm:mb-4">
+                <HeartbeatDot />
+                Available for Hire
+              </span>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight">
+                Let&apos;s Create Something Amazing Together
+              </h2>
+              <p className="text-muted-foreground text-base sm:text-lg max-w-xl mt-4 sm:mt-6 mx-auto">
+                Looking for expertise to elevate your next project? I bring a blend of technical skills, creative thinking, and professional experience to deliver exceptional results.
+              </p>
+              
+              <div className="flex justify-center mt-8 sm:mt-10">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className="relative group"
+                >
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-400 to-blue-500 rounded-lg blur opacity-60 group-hover:opacity-90 transition duration-300"></div>
+                  <ContactDialog />
+                </motion.div>
+              </div>
+            </div>
+          </Spotlight>
+        </BlurFade>
       </section>
       
       {/* Footer */}

@@ -92,7 +92,7 @@ export function ContactDialog() {
         <DialogTrigger asChild>
           <Button 
             variant="default" 
-            className="bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 hover:scale-105"
+            className="relative px-6 py-3 sm:px-8 text-sm sm:text-base font-medium bg-black dark:bg-white text-white dark:text-black border border-transparent hover:bg-black/90 dark:hover:bg-white/90 group-hover:border-white/20 transition-all duration-300 shadow-lg"
           >
             Hire Me
           </Button>

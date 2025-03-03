@@ -97,11 +97,11 @@ export const DATA = {
   ],
   projects: [
     {
-      title: "Shark Restaurant",
-      href: "https://shark-restaurant.com/",
-      description: "A stylish restaurant website for Shark, featuring elegant design, menu showcase, and a seamless WordPress experience.",
+      title: "Shark's Peruvian Cuisine",
+      href: "https://sharksperuviancuisine.com/",
+      description: "An elegant restaurant website showcasing authentic Peruvian cuisine in Central Falls, RI. Features breakfast, lunch, and dinner menus with a fine dining experience.",
       dates: "2024",
-      technologies: ["WordPress", "PHP", "CSS", "JavaScript"],
+      technologies: ["WordPress", "PHP", "CSS", "JavaScript", "Responsive Design"],
       video: "/videos/Shark.mp4",
       category: "Freelance Work"
     },
@@ -124,7 +124,7 @@ export const DATA = {
       category: "Templates & Side Projects"
     },
     {
-      title: "Landscaping site",
+      title: "MV Landscaping",
       href: "https://mv-landscaping.com/",
       description: "A sleek and modern portfolio website for showcasing landscape photography and services.",
       dates: "2024",

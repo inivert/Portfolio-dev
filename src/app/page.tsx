@@ -235,7 +235,7 @@ export default function Page() {
                   from="from-primary"
                   via="via-accent/90"
                   to="to-secondary"
-                  shadowOpacity={30}
+                  shadowOpacity={35}
                   shadowMode="auto"
                   enableOutline={true}
                   enhancedShadow={true}
@@ -259,9 +259,10 @@ export default function Page() {
                       className="text-lg sm:text-2xl font-bold"
                       from="from-primary"
                       to="to-secondary"
-                      shadowOpacity={20}
+                      shadowOpacity={30}
                       shadowMode="auto"
                       enableOutline={true}
+                      enhancedShadow={true}
                     />
                     <p className="text-muted-foreground text-xs sm:text-sm max-w-[600px] mx-auto">
                       Professional projects I&apos;ve completed for clients, showcasing my expertise in delivering tailored solutions.
@@ -309,11 +310,14 @@ export default function Page() {
                       element="h3"
                       text="Templates & Side Projects"
                       className="text-lg sm:text-2xl font-bold"
-                      from="from-accent"
-                      to="to-primary"
-                      shadowOpacity={20}
+                      from="from-primary"
+                      via="via-secondary/90"
+                      to="to-accent"
+                      shadowOpacity={45}
                       shadowMode="auto"
                       enableOutline={true}
+                      enhancedShadow={true}
+                      style={{ backgroundSize: "250% auto" }}
                     />
                     <p className="text-muted-foreground text-xs sm:text-sm max-w-[600px] mx-auto">
                       Portfolio of templates and experimental projects showcasing my design skills and technical capabilities.

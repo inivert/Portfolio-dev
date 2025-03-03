@@ -264,7 +264,7 @@ export default function Page() {
                       enableOutline={true}
                     />
                     <p className="text-muted-foreground text-xs sm:text-sm max-w-[600px] mx-auto">
-                      Professional projects I've completed for clients, showcasing my expertise in delivering tailored solutions.
+                      Professional projects I&apos;ve completed for clients, showcasing my expertise in delivering tailored solutions.
                     </p>
                   </div>
                 </BlurFade>

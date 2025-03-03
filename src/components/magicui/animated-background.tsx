@@ -90,11 +90,11 @@ export default function AnimatedBackground({
     };
     
     const colorMapLight = {
-      primary: { r: 80, g: 30, b: 120 },       // Dark purple
-      secondary: { r: 30, g: 60, b: 120 },     // Dark blue
-      accent: { r: 120, g: 60, b: 20 },        // Dark amber
-      destructive: { r: 120, g: 30, b: 30 },   // Dark red
-      muted: { r: 50, g: 50, b: 60 }           // Dark gray
+      primary: { r: 10, g: 10, b: 80 },        // EXTREMELY dark blue/purple for max contrast
+      secondary: { r: 10, g: 10, b: 120 },     // Very dark blue
+      accent: { r: 120, g: 40, b: 10 },        // Very dark brown/amber
+      destructive: { r: 120, g: 10, b: 10 },   // Very dark red
+      muted: { r: 10, g: 10, b: 50 }           // Very dark slate
     };
     
     // Select the appropriate color map based on theme
@@ -185,41 +185,28 @@ export default function AnimatedBackground({
         // Calculate current opacity
         const opacity = Math.max(0.6, Math.min(0.9, particle.opacity));
         
-        // Draw outer glow with pure circle instead of gradient for better performance
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size * 1.8 * glowIntensity * pulseFactor, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, 0.1)`;
-        ctx.fill();
-        
-        // Draw middle glow
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size * 1.4 * pulseFactor, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, 0.2)`;
-        ctx.fill();
-        
-        // Draw contrast ring (only in dark theme for better visibility)
-        if (isDarkTheme && particle.size > 1.5) {
+        // For light theme particles, very minimal halo
+        if (!isDarkTheme) {
           ctx.beginPath();
-          ctx.arc(particle.x, particle.y, particle.size * 1.1 * pulseFactor, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, 0.3)`;
+          ctx.arc(particle.x, particle.y, particle.size * 1.05 * pulseFactor, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, 0.4)`;
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }
         
-        // Draw core particle
+        // Draw core particle - this is the main visible element now
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size * pulseFactor, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, ${opacity})`;
+        ctx.fillStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, ${isDarkTheme ? opacity : 0.9})`;
         ctx.fill();
         
-        // Add motion trail
+        // Add very simple motion trail as small dots
         if (Math.abs(particle.x - particle.prevX) > 0.1 || Math.abs(particle.y - particle.prevY) > 0.1) {
+          // Just draw a smaller dot at previous position
           ctx.beginPath();
-          ctx.moveTo(particle.prevX, particle.prevY);
-          ctx.lineTo(particle.x, particle.y);
-          ctx.lineWidth = particle.size * 0.8 * pulseFactor;
-          ctx.strokeStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, ${opacity * 0.3})`;
-          ctx.stroke();
+          ctx.arc(particle.prevX, particle.prevY, particle.size * 0.5 * pulseFactor, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${particle.r}, ${particle.g}, ${particle.b}, ${isDarkTheme ? opacity * 0.2 : opacity * 0.3})`;
+          ctx.fill();
         }
         
         // Update position
@@ -267,8 +254,20 @@ export default function AnimatedBackground({
   return (
     <canvas
       ref={canvasRef}
-      className={cn("fixed inset-0 z-[-3] pointer-events-none", className)}
+      className={cn("fixed inset-0 pointer-events-none opacity-100", className)}
       aria-hidden="true"
+      style={{ 
+        background: 'transparent', 
+        mixBlendMode: 'normal',
+        zIndex: -3,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        visibility: 'visible',
+        filter: 'none'
+      }}
     />
   );
 } 

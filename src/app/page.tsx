@@ -88,7 +88,31 @@ export default function Page() {
 
   return (
     <main className="relative flex flex-col min-h-[100dvh] space-y-12 sm:space-y-16">
-      <AnimatedBackground particleCount={40} particleColor="primary" minSize={1} maxSize={2} speed={0.5} />
+      {/* Dark theme particles */}
+      <div className="dark:block hidden">
+        <AnimatedBackground 
+          particleCount={60} 
+          particleColor="primary" 
+          minSize={1.5} 
+          maxSize={3} 
+          speed={0.6} 
+          glowIntensity={2}
+          forceTheme="dark"
+        />
+      </div>
+      
+      {/* Light theme particles */}
+      <div className="dark:hidden block">
+        <AnimatedBackground 
+          particleCount={60} 
+          particleColor="primary" 
+          minSize={1.5} 
+          maxSize={3} 
+          speed={0.6} 
+          glowIntensity={1}
+          forceTheme="light"
+        />
+      </div>
       
       {/* Theme toggle in top right */}
       <div className="absolute top-4 sm:top-6 right-4 sm:right-6 z-50">

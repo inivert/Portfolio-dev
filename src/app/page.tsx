@@ -130,6 +130,7 @@ export default function Page() {
                   shadowMode="auto"
                   enableOutline={true}
                   enhancedShadow={true}
+                  animate={false}
                 />
                 <span className="text-3xl sm:text-5xl xl:text-6xl inline-block transform translate-y-0.5 sm:translate-y-0">🧑🏻‍💻</span>
               </div>
@@ -191,12 +192,13 @@ export default function Page() {
                 element="h2"
                 text="Skills"
                 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 text-center sm:text-left"
-                from="from-primary"
-                to="to-secondary"
-                shadowOpacity={20}
+                from="from-primary/90"
+                to="to-secondary/90"
+                shadowOpacity={35}
                 shadowMode="auto"
                 enableOutline={true}
                 enhancedShadow={false}
+                animate={false}
               />
             </BlurFade>
             <div className="relative flex flex-wrap gap-1.5 p-3 sm:p-4 border border-primary/10 rounded-xl bg-transparent backdrop-blur-[2px] hover:backdrop-blur-sm transition-all duration-500 group overflow-hidden">
@@ -232,13 +234,14 @@ export default function Page() {
                   element="h2"
                   text="Check out my latest work"
                   className="text-xl sm:text-3xl font-bold tracking-tighter sm:text-5xl"
-                  from="from-primary"
-                  via="via-accent/90"
-                  to="to-secondary"
-                  shadowOpacity={35}
+                  from="from-primary/90"
+                  via="via-accent/80"
+                  to="to-secondary/90"
+                  shadowOpacity={40}
                   shadowMode="auto"
                   enableOutline={true}
                   enhancedShadow={true}
+                  animate={false}
                   style={{ backgroundSize: "300% auto" }}
                 />
                 <p className="text-muted-foreground text-xs sm:text-base md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed px-4 sm:px-0">
@@ -257,12 +260,13 @@ export default function Page() {
                       element="h3"
                       text="Freelance Work"
                       className="text-lg sm:text-2xl font-bold"
-                      from="from-primary"
-                      to="to-secondary"
-                      shadowOpacity={30}
+                      from="from-primary/90"
+                      to="to-secondary/90"
+                      shadowOpacity={35}
                       shadowMode="auto"
                       enableOutline={true}
                       enhancedShadow={true}
+                      animate={false}
                     />
                     <p className="text-muted-foreground text-xs sm:text-sm max-w-[600px] mx-auto">
                       Professional projects I&apos;ve completed for clients, showcasing my expertise in delivering tailored solutions.
@@ -310,13 +314,14 @@ export default function Page() {
                       element="h3"
                       text="Templates & Side Projects"
                       className="text-lg sm:text-2xl font-bold"
-                      from="from-primary"
-                      via="via-secondary/90"
-                      to="to-accent"
-                      shadowOpacity={45}
+                      from="from-primary/90"
+                      via="via-secondary/80"
+                      to="to-accent/90"
+                      shadowOpacity={40}
                       shadowMode="auto"
                       enableOutline={true}
                       enhancedShadow={true}
+                      animate={false}
                       style={{ backgroundSize: "250% auto" }}
                     />
                     <p className="text-muted-foreground text-xs sm:text-sm max-w-[600px] mx-auto">

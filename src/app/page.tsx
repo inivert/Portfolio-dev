@@ -324,7 +324,7 @@ export default function Page() {
                   </div>
                 </BlurFade>
                 
-                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-5">
                   {DATA.projects
                     .filter(project => project.category === "Freelance Work")
                     .map((project, id) => (
@@ -369,7 +369,7 @@ export default function Page() {
                   </div>
                 </BlurFade>
                 
-                <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-5">
                   {DATA.projects
                     .filter(project => project.category === "Templates & Side Projects")
                     .map((project, id) => (

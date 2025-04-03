@@ -150,7 +150,6 @@ export default function Page() {
             speed={0.5} 
             glowIntensity={2.5}
             forceTheme="dark"
-            blurAmount={2}
           />
         </div>
         
@@ -164,7 +163,6 @@ export default function Page() {
             speed={0.5} 
             glowIntensity={1.5}
             forceTheme="light"
-            blurAmount={1}
           />
         </div>
       </div>
@@ -257,7 +255,6 @@ export default function Page() {
                 intensity={8}
                 shadow 
                 glare
-                glareBorder
               >
                 <Avatar className="size-24 sm:size-32 border-0 animate-none relative group">
                   <AvatarImage 

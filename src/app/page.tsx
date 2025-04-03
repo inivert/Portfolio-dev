@@ -143,26 +143,28 @@ export default function Page() {
         {/* Dark theme particles */}
         <div className="dark:block hidden h-full w-full">
           <AnimatedBackground 
-            particleCount={60} 
+            particleCount={75} 
             particleColor="primary" 
             minSize={1.5} 
-            maxSize={3} 
-            speed={0.6} 
-            glowIntensity={2}
+            maxSize={3.5} 
+            speed={0.5} 
+            glowIntensity={2.5}
             forceTheme="dark"
+            blurAmount={2}
           />
         </div>
         
         {/* Light theme particles */}
         <div className="dark:hidden block h-full w-full">
           <AnimatedBackground 
-            particleCount={60} 
+            particleCount={75} 
             particleColor="primary" 
             minSize={1.5} 
-            maxSize={3} 
-            speed={0.6} 
-            glowIntensity={1}
+            maxSize={3.5} 
+            speed={0.5} 
+            glowIntensity={1.5}
             forceTheme="light"
+            blurAmount={1}
           />
         </div>
       </div>
@@ -192,9 +194,9 @@ export default function Page() {
       
       {/* Hero Section */}
       <section id="hero" className="w-full overflow-visible pt-4 sm:pt-8">
-        <Spotlight className="mx-auto w-full max-w-2xl space-y-6 sm:space-y-8 overflow-visible" size={600}>
-          <div className="flex flex-col-reverse sm:flex-row gap-4 sm:gap-6 sm:justify-between overflow-visible">
-            <div className="flex-col flex flex-1 space-y-3 sm:space-y-4 mt-5 sm:mt-0 text-center sm:text-left overflow-visible">
+        <Spotlight className="mx-auto w-full max-w-2xl space-y-6 sm:space-y-8 overflow-visible" size={800}>
+          <div className="flex flex-col-reverse sm:flex-row gap-4 sm:gap-8 sm:justify-between overflow-visible">
+            <div className="flex-col flex flex-1 space-y-3 sm:space-y-5 mt-5 sm:mt-0 text-center sm:text-left overflow-visible">
               <div className="flex items-center sm:items-baseline gap-1.5 sm:gap-2 justify-center sm:justify-start overflow-visible">
                 <GradientText 
                   element="h1"
@@ -203,56 +205,70 @@ export default function Page() {
                   from="from-primary"
                   via="via-primary/80"
                   to="to-primary/60"
-                  shadowOpacity={25}
+                  shadowOpacity={35}
                   shadowMode="auto"
                   enableOutline={true}
                   enhancedShadow={true}
-                  animate={false}
+                  animate={true}
                 />
-                <span className="text-3xl sm:text-5xl xl:text-6xl inline-block transform translate-y-0.5 sm:translate-y-0">🧑🏻‍💻</span>
+                <span className="text-3xl sm:text-5xl xl:text-6xl inline-block transform translate-y-0.5 sm:translate-y-0 hover:animate-bounce">🧑🏻‍💻</span>
               </div>
+              
+              {/* Status indicator */}
+              <BlurFade delay={BLUR_FADE_DELAY * 1.5}>
+                <div className="flex items-center justify-center sm:justify-start gap-2 text-sm text-muted-foreground">
+                  <HeartbeatDot />
+                  <span>Available for freelance work</span>
+                </div>
+              </BlurFade>
+
               <BlurFadeText
-                className="max-w-[600px] text-base sm:text-lg md:text-xl overflow-visible mx-auto sm:mx-0"
+                className="max-w-[600px] text-base sm:text-lg md:text-xl overflow-visible mx-auto sm:mx-0 leading-relaxed"
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
+              
               <BlurFade delay={BLUR_FADE_DELAY * 2}>
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 pt-3 sm:pt-4">
-                  <div className="cta-button">
+                  <div className="cta-button transform hover:scale-105 transition-transform duration-200">
                     <AboutDialog />
                   </div>
-                  <div className="cta-button">
+                  <div className="cta-button transform hover:scale-105 transition-transform duration-200">
                     <ContactDialog />
                   </div>
                   
-                  {/* Separator dot */}
+                  {/* Animated separator */}
                   <div className="h-4 w-4 flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-foreground/20"></div>
+                    <div className="w-1 h-1 rounded-full bg-foreground/20 animate-pulse"></div>
                   </div>
                   
-                  {/* Social links next to Hire button */}
+                  {/* Social links with enhanced hover effects */}
                   <SocialLinks />
                 </div>
               </BlurFade>
             </div>
             
-            {/* Avatar with improved positioning for mobile */}
+            {/* Avatar with enhanced 3D effect */}
             <div className="flex justify-center mb-2 sm:mb-0">
               <Card3D 
-                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden"
+                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden hover:scale-105 transition-transform duration-300"
                 childrenClassName="rounded-full" 
                 border 
-                intensity={5}
+                intensity={8}
                 shadow 
                 glare
+                glareBorder
               >
-                <Avatar className="size-24 sm:size-32 border-0 animate-none">
+                <Avatar className="size-24 sm:size-32 border-0 animate-none relative group">
                   <AvatarImage 
-                    alt={DATA.name} 
                     src={DATA.avatarUrl} 
-                    className="object-cover transition-all duration-500 hover:scale-[1.03]"
+                    alt={DATA.name}
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <AvatarFallback>{DATA.initials}</AvatarFallback>
+                  
+                  {/* Subtle gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-primary/0 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Avatar>
               </Card3D>
             </div>

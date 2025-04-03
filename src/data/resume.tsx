@@ -106,6 +106,15 @@ export const DATA = {
       category: "Freelance Work"
     },
     {
+      title: "Unite UI",
+      href: "https://unite-ui.com",
+      description: "A curated hub of websites for developers, featuring a modern design system and comprehensive collection of UI inspirations. Built with Nuxt.js and Tailwind CSS.",
+      dates: "2024",
+      technologies: ["Nuxt.js", "Vue.js", "TypeScript", "Tailwind CSS", "Headless UI"],
+      image: "/unite-ui.png",
+      category: "Templates & Side Projects"
+    },
+    {
       title: "Restaurant Page",
       href: "https://templatedemo.vercel.app/",
       description: "A modern and responsive restaurant website template showcasing menu items, services, and booking functionality.",
